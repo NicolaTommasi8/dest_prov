@@ -1,0 +1,17 @@
+v 3
+d dest_prov. Package to convert string names of italian provincies in ISTAT numeric code.
+d Program by {bf:Nicola Tommasi} (nicola.tommasi@gmail.com)
+d
+d Distribution-Date: 20171230
+
+
+* I can also insert comments; these will not be displayed.
+* f lines name the files that comprise your package:
+
+f dest_prov.ado
+F dest_prov.do
+F dest_prov_lab.do
+f dest_prov.sthlp
+
+
+
