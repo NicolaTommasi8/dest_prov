@@ -109,3 +109,4 @@ replace `_NV' = 105  if strmatch(`_CLONE',"ogliastra")                          
 replace `_NV' = 106  if strmatch(`_CLONE',"medio*campidano")                                      | strmatch(`_CLONE',"vs")                                     | strmatch(`_CLONE',"ITG2B")
 replace `_NV' = 107  if strmatch(`_CLONE',"carbonia*iglesias")                                    | strmatch(`_CLONE',"ci")                                     | strmatch(`_CLONE',"ITG2C")
 
+replace `_NV' = 111  if strmatch(`_CLONE',"sud sardegna")                                         | strmatch(`_CLONE',"su") /*                                     | strmatch(`_CLONE',"ITG2C") */

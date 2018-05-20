@@ -2,6 +2,10 @@ capture program drop dest_prov
 program define dest_prov
 version 13
 
+
+**! version 2.1
+**  aggiunta la provincia Sud Sardegna (SU)
+
 **! version 2.0
 **  aggiunte le opzioni per creare le variabili
 **     codice regione istat (gregio)
@@ -9,13 +13,10 @@ version 13
 **     codice nuts2 (gnuts2)
 **     codice nuts1 (gnuts1)
 
-
-
 **! version 1.1.0  06nov2014
 **                   -aggiunta opzione tl(full|sigla) per fare il label con nome intero (default) o con la sigla della provincia
 **                   -aggiunta opzione ignore
 **                   -aggiunto supporto per Codice NUTS3 2010
-
 
 **! version 1.0.0  02oct2014
 **                   -converte anche le sigle delle provincie
@@ -95,7 +96,7 @@ qui recode `nv' (1 2 3 4 5 6  96 103 = 1 "Piemonte")   ///
             (76 77 = 17 "Basilicata") ///
             (78 79 80 101 102 = 18 "Calabria") ///
             (81 82 83 84 85 86 87 88 89 = 19 "Sicilia") ///
-            (90 91 92 95 104 105 106 107 = 20 "Sardegna") ///
+            (90 91 92 95 104 105 106 107 111 = 20 "Sardegna") ///
             (*=.), gen(`tmpregio')
 
 
