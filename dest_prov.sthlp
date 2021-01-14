@@ -13,7 +13,7 @@
 {title:Syntax}
 
 {p 8 14 2}
-{opt dest_prov} {it:varname} {ifin} [{cmd:,} {opt gen:erate(varname)} {opt tl(full|sigla)} {opt ignore} {opt gregio(name)} {opt macro3(name)} {opt macro5(name)} {opt gnuts3(name)} {opt gnuts2(name)} {opt gnuts1(name)} ]
+{opt dest_prov} {it:varname} {ifin} [{cmd:,} {opt gen:erate(varname)} {opt tl(full|sigla)} {opt ignore} {opt onlylab} {opt gregio(name)} {opt macro3(name)} {opt macro5(name)} {opt gnuts3(name)} {opt gnuts2(name)} {opt gnuts1(name)} ]
 
 
 {pstd}
@@ -31,6 +31,7 @@ Il valore di default è {cmd:full}.{p_end}
 il secondo controllo verifica che tutti i codici numerici generati abbiano una label. Se uno dei due controlli non è verificato, l'esecuzione del comando
 viene interrota e nessuna conversione viene eseguita. Specificando l'opzione {opt ignore}, {opt dest_prov} viene eseguito anche se uno dei controlli
 non viene superato.{p_end}
+{p2coldent : {opt onlylab}} questa opzione serve se la variabile è già numerica e l'operazione da compiere è solo il label dei suoi valori.{p_end}
 {p2coldent : {opt gregio(varname)}} genera una variabile con i codici ISTAT delle regioni.{p_end}
 {p2coldent : {opt macro3(varname)}} genera una variabile con l'appartenenza a 3 macro regioni (Nord, Centro, Sud e Isole).{p_end}
 {p2coldent : {opt macro5(varname)}} genera una variabile con l'appartenenza a 5 macro regioni (Nord-Ovest, Nord-Est, Centro, Sud, Isole).{p_end}
