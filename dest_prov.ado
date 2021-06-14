@@ -3,6 +3,9 @@ program define dest_prov
 version 13
 
 
+**! version 2.2
+**  aggiunto supporto per Codice NUTS3 2021
+
 **! version 2.1
 **  aggiunta la provincia Sud Sardegna (SU)
 
@@ -30,7 +33,7 @@ version 13
 
 
 syntax varlist (max=1) [if] [in] [, onlylab GENerate(name) tl(str) ignore ///
-                                    gregio(name) macro3(name) macro5(name) gnuts3(name) gnuts2(name) gnuts1(name)]
+                                    gregio(name) macro3(name) macro5(name) gnuts3(name) gnuts2(name) gnuts1(name) nuts(integer 2010)]
 marksample touse, strok
 tempvar dups clone ID _CLONE _NV
 tempfile TMPF
@@ -39,6 +42,11 @@ tempfile TMPF
 if "`onlylab'"!="" confirm numeric variable `varlist'
 else confirm string variable `varlist'
 
+
+if `nuts'!=2010 & `nuts'!=2021 {
+  di in red "La revisione NUTS deve essere 2010 o 2021"
+  exit _rc
+}
 tempvar tmpvarlist
 
 if "`generate'" == "" & "`onlylab'"=="" local nv "cod_prov"
@@ -53,7 +61,7 @@ else if "`onlylab'"!=""   local nv "`tmpvarlist'"
   capture label drop `nv'
 
    if "`tl'" == "" local tl "full"
-   assert "`tl'" == "full" | "`tl'" == "`sigla'" | "`tl'" == "`nuts3'"
+   assert "`tl'" == "full" | "`tl'" == "sigla" | "`tl'" == "nuts3"
 
    qui clonevar `_CLONE' = `varlist'
 
@@ -97,7 +105,7 @@ qui recode `nv' (1 2 3 4 5 6  96 103 = 1 "Piemonte")   ///
             (78 79 80 101 102 = 18 "Calabria") ///
             (81 82 83 84 85 86 87 88 89 = 19 "Sicilia") ///
             (90 91 92 95 104 105 106 107 111 = 20 "Sardegna") ///
-            (*=.), gen(`tmpregio')
+            (*=.), gen(`tmpregio') label(`gregio')
 
 
 if "`gregio'" != "" {
@@ -107,13 +115,13 @@ if "`gregio'" != "" {
   }
 
 if "`macro3'" != "" {
-  qui recode `tmpregio' (1/8=1 "Nord") (9/12=2 "Centro") (13/20=3 "Sud e Isole"), gen(`macro3')
+  qui recode `tmpregio' (1/8=1 "Nord") (9/12=2 "Centro") (13/20=3 "Sud e Isole"), gen(`macro3')  label(`macro3')
   qui assert `nv'==. if `macro3'==.
   label var `macro3' "Macro Regioni"
   }
 
 if "`macro5'" != "" {
-  qui recode `tmpregio' (1 2 3 7=1 "Nord-Ovest") (4 5 6 8=2 "Nord-Est") (9/12=3 "Centro") (13/18=4 "Sud") (19 20=5 "Isole"), gen(`macro5')
+  qui recode `tmpregio' (1 2 3 7=1 "Nord-Ovest") (4 5 6 8=2 "Nord-Est") (9/12=3 "Centro") (13/18=4 "Sud") (19 20=5 "Isole"), gen(`macro5')  label(`macro5')
   qui assert `nv'==. if `macro5'==.
   label var `macro5' "Macro Regioni"
   }
@@ -122,7 +130,7 @@ if "`gnuts3'" != "" {
   tempname labnuts3
   tempvar gnuts3num
   clonevar `gnuts3num' = `nv'
-  label define `labnuts3' 1 "ITC11" 2 "ITC12" 3 "ITC15"  4 "ITC16" 5 "ITC17" 6 "ITC18" 96 "ITC13" 103 "ITC14"   ///
+  if `nuts'==2010 label define `labnuts3' 1 "ITC11" 2 "ITC12" 3 "ITC15"  4 "ITC16" 5 "ITC17" 6 "ITC18" 96 "ITC13" 103 "ITC14"   ///
             7 "ITC20" ///
             8 "ITC31"  9 "ITC32" 10 "ITC33" 11 "ITC34"  ///
             12 "ITC41" 13 "ITC42" 14 "ITC44" 15 "ITC4C" 16 "ITC46" 17 "ITC47" 18 "ITC48" 19 "ITC4A" 20 "ITC4B" 97 "ITC43" 98 "ITC49" 108 "ITC4D" ///
@@ -142,9 +150,39 @@ if "`gnuts3'" != "" {
             78 "ITF61" 79 "ITF63" 80 "ITF65" 101 "ITF62" 102 "ITF64" ///
             81 "ITG11" 82 "ITG12" 83 "ITG13" 84 "ITG14" 85 "ITG15" 86 "ITG16" 87 "ITG17" 88 "ITG18" 89 "ITG19" ///
             90 "ITG25" 91 "ITG26" 92 "ITG27" 95 "ITG28" 104 "ITG29" 105 "ITG2A" 106 "ITG2B" 107 "ITG2C"
+
+  if `nuts'==2021 label define `labnuts3' 1 "ITC11" 2 "ITC12" 3 "ITC15"  4 "ITC16" 5 "ITC17" 6 "ITC18" 96 "ITC13" 103 "ITC14"   ///
+            7 "ITC20" ///
+            8 "ITC31"  9 "ITC32" 10 "ITC33" 11 "ITC34"  ///
+            12 "ITC41" 13 "ITC42" 14 "ITC44" 15 "ITC4C" 16 "ITC46" 17 "ITC47" 18 "ITC48" 19 "ITC4A" 20 "ITC4B" 97 "ITC43" 98 "ITC49" 108 "ITC4D" ///
+            21 "ITH10" 22 "ITH20" ///
+            23 "ITH31" 24 "ITH32" 25 "ITH33" 26 "ITH34" 27 "ITH35" 28 "ITH36" 29 "ITH37" ///
+            30 "ITH42" 31 "ITH43" 32 "ITH44" 93 "ITH41" ///
+            33 "ITH51" 34 "ITH52" 35 "ITH53" 36 "ITH54" 37 "ITH55" 38 "ITH56" 39 "ITH57" 40 "ITH58" 99 "ITH59" ///
+            41 "ITI31" 42 "ITI32" 43 "ITI33" 44 "ITI34" 109 "ITI35"  ///
+            45 "ITI11" 46 "ITI12" 47 "ITI13" 48 "ITI14" 49 "ITI16" 50 "ITI17" 51 "ITI18" 52 "ITI19" 53 "ITI1A" 100 "ITI15" ///
+            54 "ITI21" 55 "ITI22"  ///
+            56 "ITI41" 57 "ITI42" 58 "ITI43" 59 "ITI44" 60 "ITI45" ///
+            61 "ITF31" 62 "ITF32" 63 "ITF33" 64 "ITF34" 65 "ITF35"  ///
+            66 "ITF11" 67 "ITF12" 68 "ITF13" 69 "ITF14" ///
+            70 "ITF22" 94 "ITF21" ///
+            71 "ITF46" 72 "ITF47" 73 "ITF43" 74 "ITF44" 75 "ITF45" 110 "ITF48" ///
+            76 "ITF51" 77 "ITF52" ///
+            78 "ITF61" 79 "ITF63" 80 "ITF65" 101 "ITF62" 102 "ITF64" ///
+            81 "ITG11" 82 "ITG12" 83 "ITG13" 84 "ITG14" 85 "ITG15" 86 "ITG16" 87 "ITG17" 88 "ITG18" 89 "ITG19" ///
+            90 "ITG25" 91 "ITG26" 92 "ITG27" 95 "ITG28" 111 "ITG2H"
+
   label values `gnuts3num' `labnuts3'
   decode `gnuts3num', gen(`gnuts3')
-  label var `gnuts3' "NUTS3 2010"
+  label var `gnuts3' "NUTS3 `nuts'"
+  qui count if `gnuts3'==""
+  local m1=r(N)
+  qui count if `nv'==.
+  local m2=r(N)
+  if `m1'!=`m2' {
+    di in red "Alcune provincie sono prive di calssificazione NUTS3"
+    fre `nv' if `gnuts3'=="" & `nv'!=.
+  }
   drop `gnuts3num'
   }
 
@@ -160,7 +198,7 @@ if "`gnuts2'" != "" {
             19 "ITG1" 20 "ITG2"
   label values `gnuts2num' `labnuts2'
   decode `gnuts2num', gen(`gnuts2')
-  label var `gnuts2' "NUTS2 2010"
+  label var `gnuts2' "NUTS2 `nuts'"
   drop `gnuts2num'
   }
 
@@ -168,9 +206,9 @@ if "`gnuts2'" != "" {
 
 if "`gnuts1'" != "" {
     tempvar gnuts1num
-  qui recode `tmpregio' (1 2 3 7 = 1 "ITC" ) (4 5 6 8 = 2 "ITH") (9 10 11 12 = 3 "ITI") (13 14 15 16 17 18 = 4 "ITF") (19 20 = 5 "ITG"), gen(`gnuts1num')
+  qui recode `tmpregio' (1 2 3 7 = 1 "ITC" ) (4 5 6 8 = 2 "ITH") (9 10 11 12 = 3 "ITI") (13 14 15 16 17 18 = 4 "ITF") (19 20 = 5 "ITG"), gen(`gnuts1num') label(`gnuts1')
   decode `gnuts1num', gen(`gnuts1')
-  label var `gnuts1' "NUTS1 2010"
+  label var `gnuts1' "NUTS1 `nuts'"
   drop `gnuts1num'
   }
 
@@ -190,6 +228,9 @@ label values `nv' `nv'
 
 order `nv', after(`varlist')
 
+if "`gregio'"!="" label values `gregio' `gregio'
+if "`macro3'"!="" label values `macro3' `macro3'
+if "`macro5'"!="" label values `macro5' `macro5'
 
 /*** CHECKS  ***/
 local ERROR = 0

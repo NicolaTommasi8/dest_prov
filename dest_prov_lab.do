@@ -110,7 +110,7 @@ if "`tl'" == "full" {
   label define `nv' 108 "Monza e della Brianza", modify
   label define `nv' 109 "Fermo", modify
   label define `nv' 110 "Barletta-Andria-Trani", modify
-  label define `nv' 111 "Sud Saregna", modify
+  label define `nv' 111 "Sud Sardegna", modify
 }
 
 else if "`tl'" == "sigla" {

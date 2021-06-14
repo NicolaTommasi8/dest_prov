@@ -35,9 +35,10 @@ non viene superato.{p_end}
 {p2coldent : {opt gregio(varname)}} genera una variabile con i codici ISTAT delle regioni.{p_end}
 {p2coldent : {opt macro3(varname)}} genera una variabile con l'appartenenza a 3 macro regioni (Nord, Centro, Sud e Isole).{p_end}
 {p2coldent : {opt macro5(varname)}} genera una variabile con l'appartenenza a 5 macro regioni (Nord-Ovest, Nord-Est, Centro, Sud, Isole).{p_end}
-{p2coldent : {opt gnuts3(varname)}} genera una variabile (stringa) con i codici NUTS3 2010.{p_end}
-{p2coldent : {opt gnuts2(varname)}} genera una variabile (stringa) con i codici NUTS2 2010.{p_end}
-{p2coldent : {opt gnuts1(varname)}} genera una variabile (stringa) con i codici NUTS1 2010.{p_end}
+{p2coldent : {opt gnuts3(varname)}} genera una variabile (stringa) con i codici NUTS3.{p_end}
+{p2coldent : {opt gnuts2(varname)}} genera una variabile (stringa) con i codici NUTS2.{p_end}
+{p2coldent : {opt gnuts1(varname)}} genera una variabile (stringa) con i codici NUTS1.{p_end}
+{p2coldent : {opt nuts(integer)}} Specifica la revisione NUTS, i possibili valori sono 2010 e 2021. 2010 è la revisione di default.{p_end}
 {synoptline}
 {p2colreset}{...}
 
