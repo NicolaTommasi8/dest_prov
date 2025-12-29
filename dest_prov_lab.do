@@ -111,6 +111,13 @@ if "`tl'" == "full" {
   label define `nv' 109 "Fermo", modify
   label define `nv' 110 "Barletta-Andria-Trani", modify
   label define `nv' 111 "Sud Sardegna", modify
+  label define `nv' 112 "Sassari", modify
+  label define `nv' 113 "Gallura Nord-Est Sardegna", modify
+  label define `nv' 114 "Nuoro", modify
+  label define `nv' 115 "Oristano", modify
+  label define `nv' 116 "Ogliastra", modify
+  label define `nv' 117 "Medio Campidano", modify
+  label define `nv' 119 "Sulcis Iglesiente", modify
 }
 
 else if "`tl'" == "sigla" {
@@ -217,14 +224,19 @@ else if "`tl'" == "sigla" {
   label define `nv' 88         "RG", modify
   label define `nv' 89         "SR", modify
   label define `nv' 90         "SS", modify
+  label define `nv' 112        "SS", modify
   label define `nv' 91         "NU", modify
+  label define `nv' 114        "NU", modify
   label define `nv' 92         "CA", modify
   label define `nv' 95         "OR", modify
+  label define `nv' 115        "OR", modify
   label define `nv' 104        "OT", modify
   label define `nv' 105        "OG", modify
+  label define `nv' 116        "OG", modify
   label define `nv' 106        "VS", modify
+  label define `nv' 117        "VS", modify
   label define `nv' 107        "CI", modify
   label define `nv' 111        "SU", modify
+  label define `nv' 113        "OT", modify
+  label define `nv' 119        "CI", modify
 }
-
-
