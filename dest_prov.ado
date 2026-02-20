@@ -384,7 +384,7 @@ if "`gtarga'" != "" {
 qui save `TMPF', replace
 restore
 
-qui merge m:1 `_CLONE' using `TMPF', assert(1 3) keepusing(`nv' `gregio' `macro3' `macro5' `gnuts3' `gnuts2' `gnuts1' `gitter' `gtarga') nogenerate
+qui merge m:1 `_CLONE' `TIME' using `TMPF', assert(1 3) keepusing(`nv' `gregio' `macro3' `macro5' `gnuts3' `gnuts2' `gnuts1' `gitter' `gtarga') nogenerate
 sort `ID'
 drop `ID'
 

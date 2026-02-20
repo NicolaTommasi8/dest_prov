@@ -117,6 +117,7 @@ if "`tl'" == "full" {
   label define `nv' 115 "Oristano", modify
   label define `nv' 116 "Ogliastra", modify
   label define `nv' 117 "Medio Campidano", modify
+  label define `nv' 118 "Cagliari", modify
   label define `nv' 119 "Sulcis Iglesiente", modify
 }
 
@@ -228,6 +229,7 @@ else if "`tl'" == "sigla" {
   label define `nv' 91         "NU", modify
   label define `nv' 114        "NU", modify
   label define `nv' 92         "CA", modify
+  label define `nv' 118         "CA", modify
   label define `nv' 95         "OR", modify
   label define `nv' 115        "OR", modify
   label define `nv' 104        "OT", modify
