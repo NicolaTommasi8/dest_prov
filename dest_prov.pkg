@@ -1,8 +1,8 @@
 v 3
 d dest_prov. Package to convert the names of Italian provincies into the corresponding numerical code of ISTAT.
-d Program by {bf:Nicola Tommasi} (nicola.tommasi@gmail.com)
+d Program by {bf:Nicola Tommasi} (nicola.tommasi@gmail.com - nicola.tommasi@ikmail.com)
 d
-d Distribution-Date: 20251229
+d Distribution-Date: 20260519
 
 
 * I can also insert comments; these will not be displayed.
