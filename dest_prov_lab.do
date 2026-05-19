@@ -229,7 +229,6 @@ else if "`tl'" == "sigla" {
   label define `nv' 91         "NU", modify
   label define `nv' 114        "NU", modify
   label define `nv' 92         "CA", modify
-  label define `nv' 118         "CA", modify
   label define `nv' 95         "OR", modify
   label define `nv' 115        "OR", modify
   label define `nv' 104        "OT", modify
@@ -240,5 +239,6 @@ else if "`tl'" == "sigla" {
   label define `nv' 107        "CI", modify
   label define `nv' 111        "SU", modify
   label define `nv' 113        "OT", modify
+  label define `nv' 118        "CA", modify
   label define `nv' 119        "CI", modify
 }
