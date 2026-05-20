@@ -120,25 +120,25 @@ qui recode `nv' (1 2 3 4 5 6  96 103 = 1 "Piemonte")   ///
             (76 77 = 17 "Basilicata") ///
             (78 79 80 101 102 = 18 "Calabria") ///
             (81 82 83 84 85 86 87 88 89 = 19 "Sicilia") ///
-            (90 91 92 95 104 105 106 107 111 = 20 "Sardegna") ///
+            (90 91 92 95 104 105 106 107 111  112 113 114 115 116 117 118 = 20 "Sardegna") ///
             (*=.), gen(`tmpregio') label(`gregio')
 
 
 if "`gregio'" != "" {
   clonevar `gregio' = `tmpregio'
-  qui assert `nv'==. if `gregio'==.
+  if "`ignore'"=="" qui assert `nv'==. if `gregio'==.
   label var `gregio' "Regione"
   }
 
 if "`macro3'" != "" {
   qui recode `tmpregio' (1/8=1 "Nord") (9/12=2 "Centro") (13/20=3 "Sud e Isole"), gen(`macro3')  label(`macro3')
-  qui assert `nv'==. if `macro3'==.
+  if "`ignore'"=="" qui assert `nv'==. if `macro3'==.
   label var `macro3' "Macro Regioni"
   }
 
 if "`macro5'" != "" {
   qui recode `tmpregio' (1 2 3 7=1 "Nord-Ovest") (4 5 6 8=2 "Nord-Est") (9/12=3 "Centro") (13/18=4 "Sud") (19 20=5 "Isole"), gen(`macro5')  label(`macro5')
-  qui assert `nv'==. if `macro5'==.
+  if "`ignore'"=="" qui assert `nv'==. if `macro5'==.
   label var `macro5' "Macro Regioni"
   }
 
